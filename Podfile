@@ -1,6 +1,13 @@
 # Podfile
 use_frameworks!
 
+
+target 'CVApp' do
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'SnapKit'
+end
+
 target 'CVAppTests' do
     pod 'RxSwift'
     pod 'RxCocoa'
