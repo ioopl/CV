@@ -33,7 +33,6 @@ enum TableViewCell: String {
     case cell = "Cell"
 }
 
-
 class ResumeRestClient {
     func getCV() -> Observable<[ResumeDto]> {
         let urlComponents = URLComponents(url: URL(string: "https://api.myjson.com/bins/vsgac")!, resolvingAgainstBaseURL: true)!
@@ -111,6 +110,7 @@ class ViewController: UIViewController {
         Observable.just([ResumeDto(title: Resume.title.rawValue)]).flatMapLatest { _ in
                     ResumeRestClient().getCV()
                 }.bind(to: tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
+                    cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17.0)
                     cell.textLabel?.text = dto.title
                 }.disposed(by: disposeBag)
 

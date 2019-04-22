@@ -29,10 +29,16 @@ class DetailsViewController: UIViewController {
 
         view.backgroundColor = UIColor.white
         let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont(name: "Avenir Next", size: 17.0)
+
         view.addSubview(label)
         label.text = dto.title
         label.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.left.equalTo(self.view).offset(30)
+            make.top.equalTo(self.view).offset(-100)
+            make.right.equalTo(self.view).offset(-30)
+            make.bottom.equalTo(self.view)
         }
     }
 }
