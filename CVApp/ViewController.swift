@@ -61,7 +61,7 @@ class RemoteServiceDispatcher: RequestDispatcher {
     }
 }
 
-// MARK: - View Controller Coordinator
+// MARK: View Controller Coordinator
 class ResumeViewCoordinator {
     let navigationController: UINavigationController?
     let resume: ResumeDto
