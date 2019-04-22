@@ -84,6 +84,9 @@ class ViewController: UIViewController {
     private let errorLabel = UILabel()
     private let loading = UIActivityIndicatorView(style: .gray)
     private var coordinator: ResumeViewCoordinator?
+    private let viewModel = ViewModel()
+    private let searchBar = UISearchBar()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +97,9 @@ class ViewController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+
+        tableView.tableHeaderView = searchBar
+        searchBar.sizeToFit()
 
         title = "Umair Hasan Resume"
 
@@ -107,12 +113,28 @@ class ViewController: UIViewController {
             make.center.equalToSuperview()
         }
 
+
+        /*
+         // MVC Approach
         Observable.just([ResumeDto(title: Resume.title.rawValue)]).flatMapLatest { _ in
                     ResumeRestClient().getCV()
                 }.bind(to: tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
                     cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17.0)
                     cell.textLabel?.text = dto.title
                 }.disposed(by: disposeBag)
+        */
+
+        // MVVM Approach
+        viewModel.queryResume(query: searchBar.rx.text.orEmpty.asObservable())
+        viewModel.state.content.drive(tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
+            cell.textLabel?.text = dto.title
+            }.disposed(by: disposeBag)
+
+        viewModel.state.loading.drive(loading.rx.isAnimating).disposed(by: disposeBag)
+        viewModel.state.error.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.state.errorMessage.drive(errorLabel.rx.text).disposed(by: disposeBag)
+        // End MVVM Approach
+
 
         tableView.rx.modelSelected(ResumeDto.self)
             .subscribe(onNext: { [weak self] (dto) in
