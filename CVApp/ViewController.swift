@@ -90,12 +90,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: TableViewCell.cell.rawValue)
-        view.addSubview(tableView)
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+
+        title = "Umair Hasan Resume"
 
         view.addSubview(loading)
         loading.snp.makeConstraints { (make) in
