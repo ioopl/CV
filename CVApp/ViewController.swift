@@ -13,8 +13,8 @@ struct ResumeResult: Codable {
     let contents: [ResumeDto]
 }
 
-struct ResumeDto: Codable, Equatable {
-    let title: String
+public struct ResumeDto: Codable, Equatable {
+    public let title: String
 }
 
 enum ResumeRestClientError: Error {
@@ -76,7 +76,7 @@ class ResumeViewCoordinator {
     }
 }
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)

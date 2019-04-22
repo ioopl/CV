@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     let dto: ResumeDto
