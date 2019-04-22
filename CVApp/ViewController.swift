@@ -3,7 +3,6 @@
 //  CVApp
 //
 //  Created by Umair Hasan on 21/04/2019.
-//  Copyright © 2019 Umair Hasan. All rights reserved.
 //
 import UIKit
 import RxSwift
@@ -87,7 +86,6 @@ class ViewController: UIViewController {
     private let viewModel = ViewModel()
     private let searchBar = UISearchBar()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -113,20 +111,20 @@ class ViewController: UIViewController {
             make.center.equalToSuperview()
         }
 
-
         /*
          // MVC Approach
-        Observable.just([ResumeDto(title: Resume.title.rawValue)]).flatMapLatest { _ in
-                    ResumeRestClient().getCV()
-                }.bind(to: tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
-                    cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17.0)
-                    cell.textLabel?.text = dto.title
-                }.disposed(by: disposeBag)
-        */
+         Observable.just([ResumeDto(title: Resume.title.rawValue)]).flatMapLatest { _ in
+         ResumeRestClient().getCV()
+         }.bind(to: tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
+         cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17.0)
+         cell.textLabel?.text = dto.title
+         }.disposed(by: disposeBag)
+         */
 
         // MVVM Approach
         viewModel.queryResume(query: searchBar.rx.text.orEmpty.asObservable())
         viewModel.state.content.drive(tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
+            cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17.0)
             cell.textLabel?.text = dto.title
             }.disposed(by: disposeBag)
 
@@ -135,7 +133,6 @@ class ViewController: UIViewController {
         viewModel.state.errorMessage.drive(errorLabel.rx.text).disposed(by: disposeBag)
         // End MVVM Approach
 
-
         tableView.rx.modelSelected(ResumeDto.self)
             .subscribe(onNext: { [weak self] (dto) in
                 self?.coordinator = ResumeViewCoordinator(navigationController: self?.navigationController, resume: dto)
@@ -143,4 +140,3 @@ class ViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
 }
-
