@@ -61,13 +61,30 @@ class RemoteServiceDispatcher: RequestDispatcher {
     }
 }
 
+// MARK: - View Controller Coordinator
+class ResumeViewCoordinator {
+    let navigationController: UINavigationController?
+    let resume: ResumeDto
+    let disposeBag = DisposeBag()
+
+    init(navigationController: UINavigationController?, resume: ResumeDto) {
+        self.navigationController = navigationController
+        self.resume = resume
+    }
+
+    func start() {
+        let vc = DetailsViewController(dto: resume)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 class ViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    private let searchBar = UISearchBar()
     private let errorLabel = UILabel()
     private let loading = UIActivityIndicatorView(style: .gray)
+    private var coordinator: ResumeViewCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +112,12 @@ class ViewController: UIViewController {
                 }.bind(to: tableView.rx.items(cellIdentifier: TableViewCell.cell.rawValue)) { (index: Int, dto: ResumeDto, cell: UITableViewCell) in
                     cell.textLabel?.text = dto.title
                 }.disposed(by: disposeBag)
+
+        tableView.rx.modelSelected(ResumeDto.self)
+            .subscribe(onNext: { [weak self] (dto) in
+                self?.coordinator = ResumeViewCoordinator(navigationController: self?.navigationController, resume: dto)
+                self?.coordinator?.start()
+            }).disposed(by: disposeBag)
     }
 }
 
