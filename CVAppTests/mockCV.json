@@ -1,0 +1,24 @@
+{
+    "title": "Umair Hasan",
+    "version": 0.1,
+    "href": "http://www.uhs.me/",
+    "contents": [{
+        "title": "Professional Summary",
+        "href": "",
+        "details": "A computing graduate with iOS development experience using Apple Swift language since its inception. I am inspired by the mobile industry and passionate for creating innovative solutions.",
+        "thumbnail": ""
+    },
+    {
+        "title": "Synopsis",
+        "href": "",
+        "details": "Worked in teams using agile methodologies Scrum and Kanban. Experience working in Tech Startups, Early Stage Business and Large Corporations.•Experience in linking Mobile Cloud Backends e.g.Azure, AWS, IBM and Firebase.",
+        "thumbnail": ""
+    },
+    {
+        "title": "Work Experience",
+        "href": "https://www.ocadotechnology.com/",
+        "details": "Software Engineer (Ocado Technology)",
+        "thumbnail": "https://cdn.worldvectorlogo.com/logos/ocado.svg"
+    }
+    ]
+}
