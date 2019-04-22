@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		407F202CC67A37259F0896AD /* Pods_CVAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA7F071DB348640E9F50EA7 /* Pods_CVAppTests.framework */; };
 		594A0633226CF3F600CA4338 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594A0632226CF3F500CA4338 /* DetailsViewController.swift */; };
+		594A0635226E2FFC00CA4338 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594A0634226E2FFC00CA4338 /* ViewModel.swift */; };
+		594A0637226E304F00CA4338 /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594A0636226E304F00CA4338 /* ViewModelState.swift */; };
 		598EA3D4226C85E200C5213E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA3D3226C85E200C5213E /* AppDelegate.swift */; };
 		598EA3D6226C85E200C5213E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598EA3D5226C85E200C5213E /* ViewController.swift */; };
 		598EA3D9226C85E200C5213E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598EA3D7226C85E200C5213E /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		194CFB1D064E013814CEF285 /* Pods-CVAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CVAppUITests/Pods-CVAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		594A0632226CF3F500CA4338 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		594A0634226E2FFC00CA4338 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		594A0636226E304F00CA4338 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
 		598EA3D0226C85E200C5213E /* CVApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CVApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		598EA3D3226C85E200C5213E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		598EA3D5226C85E200C5213E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				598EA3DC226C85E300C5213E /* LaunchScreen.storyboard */,
 				598EA3DF226C85E300C5213E /* Info.plist */,
 				594A0632226CF3F500CA4338 /* DetailsViewController.swift */,
+				594A0634226E2FFC00CA4338 /* ViewModel.swift */,
+				594A0636226E304F00CA4338 /* ViewModelState.swift */,
 			);
 			path = CVApp;
 			sourceTree = "<group>";
@@ -452,8 +458,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594A0637226E304F00CA4338 /* ViewModelState.swift in Sources */,
 				598EA3D6226C85E200C5213E /* ViewController.swift in Sources */,
 				598EA3D4226C85E200C5213E /* AppDelegate.swift in Sources */,
+				594A0635226E2FFC00CA4338 /* ViewModel.swift in Sources */,
 				594A0633226CF3F600CA4338 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
