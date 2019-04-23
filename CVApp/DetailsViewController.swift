@@ -33,7 +33,7 @@ final class DetailsViewController: UIViewController {
         label.font = UIFont(name: "Avenir Next", size: 17.0)
 
         view.addSubview(label)
-        label.text = dto.title
+        label.text = dto.details
         label.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(30)
             make.top.equalTo(self.view).offset(-100)

@@ -15,6 +15,7 @@ struct ResumeResult: Codable {
 
 public struct ResumeDto: Codable, Equatable {
     public let title: String
+    public let details: String
 }
 
 enum ResumeRestClientError: Error {
