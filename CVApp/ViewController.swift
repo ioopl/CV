@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  CVApp
-//
-//  Created by Umair Hasan on 21/04/2019.
-//
 import UIKit
 import RxSwift
 import RxCocoa
@@ -91,6 +85,7 @@ final class ViewController: UIViewController {
     private var coordinator: ResumeViewCoordinator?
     private let viewModel = ViewModel()
     private let searchBar = UISearchBar()
+    private let viewTitle = "Umair Hasan Resume"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +100,7 @@ final class ViewController: UIViewController {
         tableView.tableHeaderView = searchBar
         searchBar.sizeToFit()
 
-        title = "Umair Hasan Resume"
+        title = viewTitle
 
         view.addSubview(loading)
         loading.snp.makeConstraints { (make) in
