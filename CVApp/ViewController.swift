@@ -33,7 +33,12 @@ enum TableViewCell: String {
     case cell = "Cell"
 }
 
-class ResumeRestClient {
+// Create the Service protocol so the service methods could be tested.
+protocol ResumeRestClientServiceProtocol {
+    func getCV() -> Observable<[ResumeDto]>
+}
+
+class ResumeRestClient: ResumeRestClientServiceProtocol {
     func getCV() -> Observable<[ResumeDto]> {
         let resumeURL = "https://api.myjson.com/bins/vsgac"
         let urlComponents = URLComponents(url: URL(string: resumeURL)!, resolvingAgainstBaseURL: true)!
