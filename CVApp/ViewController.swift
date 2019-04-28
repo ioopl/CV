@@ -39,7 +39,7 @@ protocol ResumeRestClientServiceProtocol {
 
 class ResumeRestClient: ResumeRestClientServiceProtocol {
     func getCV() -> Observable<[ResumeDto]> {
-        let resumeURL = "https://api.myjson.com/bins/vsgac"
+        let resumeURL = "https://api.myjson.com/bins/pclzo"
         let urlComponents = URLComponents(url: URL(string: resumeURL)!, resolvingAgainstBaseURL: true)!
         let request = URLRequest(url: urlComponents.url!)
         return RemoteServiceDispatcher().dispatch(request: request).flatMap({ (response: HTTPURLResponse, data: Data) -> Observable<[ResumeDto]> in
