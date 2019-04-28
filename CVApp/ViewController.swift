@@ -33,7 +33,6 @@ enum TableViewCell: String {
     case cell = "Cell"
 }
 
-// Create the Service protocol so the service methods could be tested.
 protocol ResumeRestClientServiceProtocol {
     func getCV() -> Observable<[ResumeDto]>
 }
