@@ -12,26 +12,45 @@ import RxSwift
 
 class CVAppTests: XCTestCase {
 
-    private var testViewModel: ViewModel!
+    private var viewModel: ViewModel!
     var fakeWebRequestDispatcher: FakeWebRequestDispatcher!
-    var resumeRestClient: ResumeRestClient!
-
+    //var resumeRestClient: ResumeRestClient!
+    var resumeRestClient: FakeResumeService!
 
     override func setUp() { }
 
     func testDTO() {
-        let expectedResumeDTO = ResumeDto(title: "My Summary")
-        let fakeResumeDTO = loadFakeResumeResponse()
-        print(fakeResumeDTO)
-        print(expectedResumeDTO)
-        XCTAssertEqual(fakeResumeDTO, expectedResumeDTO)
+        let expectedDTO = ResumeDto(title: "Title", details: "Details")
+        //let fakeDTO = loadFakeResumeResponse()
+        _ = loadFakeResumeResponse().do(onNext: { (fake) in
+                XCTAssertEqual(fake.first?.title, expectedDTO.title)
+            })
+    }
+
+    func testViewModel() {
+        // Crate VM with Inject Fake Srevice
+        viewModel.queryResume(query: Observable.just("experience"))
+        viewModel.state.drive(onNext: { (viewModelState) in
+            //TEST VIEWMODELSTATE
+            XCTAssertEqual(viewModelState.content!.first, self.resumeRestClient.expectedDto)
+        })
     }
 
     private func loadFakeResumeResponse() -> Observable<[ResumeDto]> {
         fakeWebRequestDispatcher.responseDataFile = File(name: "mockCV", type: "json")
         let observable = resumeRestClient.getCV()
-        return observable.asObservable().self
+        return observable.asObservable()
+    }
+}
 
+// Pretends thats this is the Network response
+class FakeResumeService: ResumeRestClientServiceProtocol {
+
+    //Injected DTO
+    let expectedDto = ResumeDto(title: "Title", details: "Details")
+
+    func getCV() -> Observable<[ResumeDto]> {
+        return Observable.just([expectedDto])
     }
 }
 
